@@ -2,126 +2,123 @@ import { Routes, Route } from "react-router-dom";
 import ProtectedRoute from "@/auth/ProtectedRoute";
 
 // Import all components
-import {
-  // Platform Desk Components
-  PlatformDesk,
-  PlatformRecentActivities,
-  PlatformAssessment,
-  PlatformAssessmentManage,
-  PlatformQuestions,
-  PlatformSessions,
-  PlatformCoachExpertise,
-  // PlatformSessionPool,
-  AimshalaSessionsPool,
-  PlatformViewSession,
-  PlatformMasterclass,
-  PlatformEvents,
-  PlatformCourses,
-  PlatformContribute,
-  PlatformAccessCode,
-  PlatformConsultantPremium,
-  PlatformForms,
-  PlatformFormSubmissions,
-  PlatformFormSubmissionDetail,
-  CustomFormView,
-  PlatformDeskIAM,
-  PlatformEditRoleWrapper,
-  PlatformAddTeamMember,
-  PlatformManageRoles,
-  PlatformAddNewRole,
-  PlatformPay,
-  PlatformPayWrapper,
+import { Desk as PlatformDesk } from "@/pages/PlatformDesk/Desk";
+import { RecentActivities as PlatformRecentActivities } from "@/pages/PlatformDesk/RecentActivities";
+import { Assessments as PlatformAssessment } from "@/pages/PlatformDesk/Assessment/Assessments";
+import { Manage as PlatformAssessmentManage } from "@/pages/PlatformDesk/Assessment/Manage";
+import { Question as PlatformQuestions } from "@/pages/PlatformDesk/Assessment/Question";
+import { Sessions as PlatformSessions } from "@/pages/PlatformDesk/Sessions/Sessions";
+import { default as PlatformCoachExpertise } from "@/pages/PlatformDesk/Sessions/CoachExpertise";
+// export { SessionPool as PlatformSessionPool } from "@/pages/PlatformDesk/Sessions/SessionPool";
+import { AimshalaSessionsPool } from "@/pages/PlatformDesk/Sessions/AimshalaExperties";
+import { ViewSession as PlatformViewSession } from "@/pages/PlatformDesk/Sessions/ViewSession";
+import { Masterclass as PlatformMasterclass } from "@/pages/PlatformDesk/Sessions/Masterclass";
+import { Events as PlatformEvents } from "@/pages/PlatformDesk/Events";
+import { Courses as PlatformCourses } from "@/pages/PlatformDesk/Courses";
+import { Contribute as PlatformContribute } from "@/pages/PlatformDesk/Contribute";
+import { AccessCode as PlatformAccessCode } from "@/pages/PlatformDesk/AccessCode";
+import { ConsultantPremium as PlatformConsultantPremium } from "@/pages/PlatformDesk/Plans/ConsultantPremium";
+import { FormTabsWrapper as PlatformForms } from "@/pages/PlatformDesk/Forms";
+import { FormSubmissionsPage as PlatformFormSubmissions } from "@/pages/PlatformDesk/FormsWrapper/FormSubmissionsPage";
+import { FormSubmissionDetailPage as PlatformFormSubmissionDetail } from "@/pages/PlatformDesk/FormsWrapper/FormSubmissionDetailPage";
+import { CustomFormView } from "@/pages/PlatformDesk/FormsWrapper/CustomForm/CustomFormView";
+import { DeskIAM as PlatformDeskIAM } from "@/pages/PlatformDesk/DeskIAM";
+import { EditRoleWrapper as PlatformEditRoleWrapper } from "@/pages/PlatformDesk/underDeskIAM/EditRoleWrapper";
+import { AddTeamMember as PlatformAddTeamMember } from "@/pages/PlatformDesk/underDeskIAM/AddDeskUser";
+import { ManageRoles as PlatformManageRoles } from "@/pages/PlatformDesk/underDeskIAM/ManageRoles";
+import { AddNewRole as PlatformAddNewRole } from "@/pages/PlatformDesk/underDeskIAM/AddNewRole";
+import { Pay as PlatformPay } from "@/pages/PlatformDesk/Plans/Pay";
+import { PayWrapper as PlatformPayWrapper } from "@/pages/PlatformDesk/Plans/PayWrapper";
 
-  // Review Desk Components
-  ReviewDesk,
-  ReviewPool,
-  ReviewConsultantView,
-  ReviewFollowUps,
+// Review Desk Components
+import { Desk as ReviewDesk } from "@/pages/ReviewDesk/Desk";
+import { Pool as ReviewPool } from "@/pages/ReviewDesk/Pool";
+import { ConsultantView as ReviewConsultantView } from "@/pages/ReviewDesk/Pages/ConsultantView";
+import { ReviewFollowUps } from "@/pages/ReviewDesk/ReviewFollowUps";
 
-  // Relations Desk Components
-  RelationOuterOrganisation,
-  RelationDesk,
-  RelationPipeline,
-  RelationPool,
-  RelationExplorers,
-  RelationCoaches,
-  RelationOrganisation,
-  RelationChannelPartners,
-  RelationPartnerships,
-  RelationProblems,
-  RelationBugs,
-  RelationBugsView,
-  RelationAbuses,
-  RelationAbusesView,
-  RelationExplorersList,
-  RelationCoachesProfile,
-  RelationCoachesList,
-  RelationUserTimeline,
-  RelationViewExplorerLead,
-  RelationUserMessage,
-  RelationNextFollowUpFlow,
-  AddLeadFlow,
-  MyAccounts,
-  CaseDetails,
-  RelationLeaderboard,
-  RelationViewProfile,
-  RelationAddProblem,
-  RelationProblemView,
-  RelationAddBug,
-  RelationAddAbuse,
-  // Digital Desk Components
-  DigitalDesk,
-  DigitalCampaigns,
-  DigitalSurveys,
-  DigitalManageQuestion,
-  DigitalSurveyQuestion,
-  DigitalInsights,
-  DigitalVideo,
-  DigitalViewfaq,
-  DigitalFaq,
-  DigitalHelpArticles,
-  DigitalInTheNews,
-  DigitalTestimonials,
-  DigitalTeamDirectory,
-  DigitalExams,
-  DigitalCareers,
-  DigitalDegrees,
-  DigitalCourses,
-  DigitalScholarships,
-  DigitalSkills,
-  DigitalReview,
-  DigitalComments,
-  DigitalFeedback,
-  DigitalHelpful,
-  DigitalFileManager,
-  DigitalMetaInformation,
+// Relations Desk Components
+import { Organisation as RelationOuterOrganisation } from "@/pages/RelationDesk/Organisation";
+import { Desk as RelationDesk } from "@/pages/RelationDesk/Desk";
+import { MyPipeline as RelationPipeline } from "@/pages/RelationDesk/MyPipeline";
+import { Pool as RelationPool } from "@/pages/RelationDesk/Pool";
+import { Explorers as RelationExplorers } from "@/pages/RelationDesk/Leads/LeadExplorer/Explorers";
+import { Coaches as RelationCoaches } from "@/pages/RelationDesk/Leads/Coaches";
+import { Organisation as RelationOrganisation } from "@/pages/RelationDesk/Leads/Organisation";
+import { ChannelPartners as RelationChannelPartners } from "@/pages/RelationDesk/Leads/ChannelPartners";
+import { Partnerships as RelationPartnerships } from "@/pages/RelationDesk/Leads/Partnerships";
+import { Problems as RelationProblems } from "@/pages/RelationDesk/Cases/Problems/Problems";
+import { Bugs as RelationBugs } from "@/pages/RelationDesk/Cases/Bugs/Bugs";
+import { BugsView as RelationBugsView } from "@/pages/RelationDesk/Cases/Bugs/BugsView";
+import { Abuses as RelationAbuses } from "@/pages/RelationDesk/Cases/Abuse/Abuses";
+import { AbusesView as RelationAbusesView } from "@/pages/RelationDesk/Cases/Abuse/AbusesView";
+import { Explorers as RelationExplorersList } from "@/pages/RelationDesk/Explorers";
+import { CoachesProfile as RelationCoachesProfile } from "@/pages/RelationDesk/CoachesViewProfile";
+import { Coaches as RelationCoachesList } from "@/pages/RelationDesk/Coaches";
+import { UserTimeline as RelationUserTimeline } from "@/pages/RelationDesk/Leads/LeadExplorer/UserTimeline";
+import { ViewExplorerLead as RelationViewExplorerLead } from "@/pages/RelationDesk/Leads/LeadExplorer/viewExplorerLead";
+import { UserMessage as RelationUserMessage } from "@/pages/RelationDesk/UserMessage";
+import { NextFollowUpFlow as RelationNextFollowUpFlow } from "@/pages/RelationDesk/nextFollowUpFlow";
+import { AddLeadFlow } from "@/pages/RelationDesk/addLeadFlow";
+import { MyAccounts } from "@/pages/RelationDesk/MyAcount/MyAccount";
+import { CaseDetails } from "@/pages/RelationDesk/MyAcount/CaseDetails";
+import { Leaderboard as RelationLeaderboard } from "@/pages/RelationDesk/Leaderboard";
+import { ViewProfile as RelationViewProfile } from "@/pages/RelationDesk/ExplorersViewProfile";
+import { AddProblem as RelationAddProblem } from "@/pages/RelationDesk/Cases/Problems/AddProblem";
+import { ProblemView as RelationProblemView } from "@/pages/RelationDesk/Cases/Problems/ProblemView";
+import { AddBug as RelationAddBug } from "@/pages/RelationDesk/Cases/Bugs/AddBug";
+import { AddAbuse as RelationAddAbuse } from "@/pages/RelationDesk/Cases/Abuse/AddAbuse";
+// Digital Desk Components
+import { Desk as DigitalDesk } from "@/pages/DigitalDesk/Desk";
+import { Campaigns as DigitalCampaigns } from "@/pages/DigitalDesk/Campaigns";
+import { Surveys as DigitalSurveys } from "@/pages/DigitalDesk/Survey/Surveys";
+import { ManageQuestion as DigitalManageQuestion } from "@/pages/DigitalDesk/Survey/ManageQuestion";
+import { SurveyQuestion as DigitalSurveyQuestion } from "@/pages/DigitalDesk/Survey/SurveyQuestion";
+import { Insights as DigitalInsights } from "@/pages/DigitalDesk/CMS/Insights";
+import { VideoLibraries as DigitalVideo } from "@/pages/DigitalDesk/CMS/Video";
+import { Viewfaq as DigitalViewfaq } from "@/pages/DigitalDesk/CMS/Viewfaq";
+import { Faq as DigitalFaq } from "@/pages/DigitalDesk/CMS/Faq";
+import { HelpArticles as DigitalHelpArticles } from "@/pages/DigitalDesk/CMS/HelpArticles";
+import { InTheNews as DigitalInTheNews } from "@/pages/DigitalDesk/CMS/InTheNews";
+import { Testimonials as DigitalTestimonials } from "@/pages/DigitalDesk/CMS/Testimonials";
+import { TeamDirectory as DigitalTeamDirectory } from "@/pages/DigitalDesk/CMS/TeamDirectory";
+import { Exams as DigitalExams } from "@/pages/DigitalDesk/Libraries/Exams";
+import { Careers as DigitalCareers } from "@/pages/DigitalDesk/Libraries/Careers";
+import { Degrees as DigitalDegrees } from "@/pages/DigitalDesk/Libraries/Degrees";
+import { Courses as DigitalCourses } from "@/pages/DigitalDesk/Libraries/Courses";
+import { Scholarships as DigitalScholarships } from "@/pages/DigitalDesk/Libraries/Scholarships";
+import { Skills as DigitalSkills } from "@/pages/DigitalDesk/Libraries/Skills";
+import { Review as DigitalReview } from "@/pages/DigitalDesk/Engage/Review";
+import { Comments as DigitalComments } from "@/pages/DigitalDesk/Engage/Comments";
+import { Feedback as DigitalFeedback } from "@/pages/DigitalDesk/Engage/Feedback";
+import { Helpful as DigitalHelpful } from "@/pages/DigitalDesk/Engage/Helpful";
+import { FileManager as DigitalFileManager } from "@/pages/DigitalDesk/FileManager";
+import { MetaInformation as DigitalMetaInformation } from "@/pages/DigitalDesk/MetaInformation";
 
-  // Finance Desk Components
-  FinanceDesk,
-  FinancePayments,
-  FinanceCommission,
-  FinancePayout,
-  FinancePlatform,
-  FinanceEarning,
-  FinanceReports,
-  FinanceWithdrawal,
-  FinanceViewPayment,
+// Finance Desk Components
+import { Finance as FinanceDesk } from "@/pages/FinanceDesk/Finance";
+import { Payments as FinancePayments } from "@/pages/FinanceDesk/Payments";
+import { Commission as FinanceCommission } from "@/pages/FinanceDesk/Commission";
+import { Payout as FinancePayout } from "@/pages/FinanceDesk/Payout";
+import { Platform as FinancePlatform } from "@/pages/FinanceDesk/Platform";
+import { Earning as FinanceEarning } from "@/pages/FinanceDesk/Earning";
+import { Reports as FinanceReports } from "@/pages/FinanceDesk/Reports";
+import { Withdrawal as FinanceWithdrawal } from "@/pages/FinanceDesk/Withdrawal";
+import { ViewPayment as FinanceViewPayment } from "@/pages/FinanceDesk/ViewPayment";
 
-  // DevOps Desk Components
-  DevopsDesk,
-  DevopsMycases,
-  DevopsCases,
-  DevopsLeaderboard,
+// DevOps Desk Components
+import { DevopsDesk } from "@/pages/DevopsDesk/DevopsDesk";
+import { MyCase as DevopsMycases } from "@/pages/DevopsDesk/Mycases";
+import { Cases as DevopsCases } from "@/pages/DevopsDesk/Cases";
+import { Leaderboard as DevopsLeaderboard } from "@/pages/DevopsDesk/Leaderboard";
 
-  // HRMS Desk Components
-  HRMSDesk,
-  HRMSFollowUp,
-  HRMSCurrentOpening,
-  HRMSJobApplication,
+// HRMS Desk Components
+import { Desk as HRMSDesk } from "@/pages/HRMS/Desk";
+import { FollowUp as HRMSFollowUp } from "@/pages/HRMS/FollowUp";
+import { CurrenOpenings as HRMSCurrentOpening } from "@/pages/HRMS/CurrenOpenings";
+import { JobApplication as HRMSJobApplication } from "@/pages/HRMS/JobApplication";
 
-  // Common components
-  Login
-} from "./DynamicRoutes";
+// Common components
+import { default as Login } from "@/pages/Login";
 
 export default function AppRoutes() {
   return (
