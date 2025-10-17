@@ -32,7 +32,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: (id) => {
-          // Simplified chunking strategy to avoid initialization issues
+          // Simple chunking strategy for better performance
           if (id.includes('node_modules')) {
             // Keep React ecosystem together
             if (id.includes('react') || id.includes('react-dom') || id.includes('react-router')) {
@@ -65,29 +65,7 @@ export default defineConfig({
             return 'vendor';
           }
           
-          // Simplified feature chunks
-          if (id.includes('/src/pages/PlatformDesk/')) {
-            return 'platform-desk';
-          }
-          if (id.includes('/src/pages/RelationDesk/')) {
-            return 'relation-desk';
-          }
-          if (id.includes('/src/pages/DigitalDesk/')) {
-            return 'digital-desk';
-          }
-          if (id.includes('/src/pages/FinanceDesk/')) {
-            return 'finance-desk';
-          }
-          if (id.includes('/src/pages/ReviewDesk/')) {
-            return 'review-desk';
-          }
-          if (id.includes('/src/pages/DevopsDesk/')) {
-            return 'devops-desk';
-          }
-          if (id.includes('/src/pages/HRMS/')) {
-            return 'hrms-desk';
-          }
-          
+          // Keep all pages together in main chunk since they're no longer lazy loaded
           // Keep store together
           if (id.includes('/src/store/')) {
             return 'store';
@@ -98,28 +76,21 @@ export default defineConfig({
               id.includes('/src/auth/')) {
             return 'common';
           }
-          
-          // Keep routes together
-          if (id.includes('/src/routes/')) {
-            return 'routes';
-          }
         }
       }
     },
     // Reduce chunk size warning limit
     chunkSizeWarningLimit: 500,
-    // Add minification options to prevent variable hoisting issues
+    // Simplified minification options
     minify: 'terser',
     terserOptions: {
       compress: {
-        // Disable some aggressive optimizations that can cause initialization issues
-        hoist_funs: false,
-        hoist_vars: false,
-        keep_fargs: true
+        hoist_funs: true,
+        hoist_vars: true,
+        keep_fargs: false
       },
       mangle: {
-        // Keep function names to help with debugging
-        keep_fnames: true
+        keep_fnames: false
       }
     }
   },

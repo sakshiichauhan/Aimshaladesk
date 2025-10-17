@@ -728,7 +728,7 @@
 
 
 
-const ViewSession = () => {
+export function ViewSession() {
   return (
     <div>
       session view
@@ -736,4 +736,4 @@ const ViewSession = () => {
   )
 }
 
-export default ViewSession
+
