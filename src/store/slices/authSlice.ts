@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-const URL_BASE = "https://a.aimshala.com/api/admin/login";
+// const URL_BASE = "https://a.aimshala.com/api/admin/login";
 
 export const loginUser = createAsyncThunk(
   "auth/loginUser",
@@ -10,8 +10,8 @@ export const loginUser = createAsyncThunk(
   ) => {
     try {
       const response = await fetch(
-        // `/api/admin/login`,
-        URL_BASE,
+        `/api/admin/login`,
+        // URL_BASE,
 
          {
         method: "POST",
