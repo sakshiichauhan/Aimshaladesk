@@ -14,35 +14,58 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  optimizeDeps: {
+    include: [
+      'react',
+      'react-dom',
+      'react-router-dom',
+      '@reduxjs/toolkit',
+      'react-redux',
+      'framer-motion',
+      'lucide-react',
+      'axios',
+      'clsx',
+      'tailwind-merge'
+    ]
+  },
   build: {
     rollupOptions: {
       output: {
         manualChunks: (id) => {
-          // Vendor chunks - separate large third-party libraries
+          // Simplified chunking strategy to avoid initialization issues
           if (id.includes('node_modules')) {
-            // React ecosystem
+            // Keep React ecosystem together
             if (id.includes('react') || id.includes('react-dom') || id.includes('react-router')) {
               return 'react-vendor';
             }
-            // Radix UI components
-            if (id.includes('@radix-ui')) {
+            // Keep UI libraries together
+            if (id.includes('@radix-ui') || id.includes('lucide-react')) {
               return 'ui-vendor';
             }
-            // Redux and state management
+            // Keep state management together
             if (id.includes('@reduxjs') || id.includes('redux')) {
               return 'redux-vendor';
             }
-            // Other utilities
-            if (id.includes('axios') || id.includes('framer-motion') || id.includes('lucide-react') || 
-                id.includes('react-hook-form') || id.includes('zod') ||
-                id.includes('clsx') || id.includes('tailwind-merge') || id.includes('sonner')) {
+            // Keep animation libraries together
+            if (id.includes('framer-motion') || id.includes('motion')) {
+              return 'animation-vendor';
+            }
+            // Keep form validation together
+            if (id.includes('react-hook-form') || id.includes('zod') || id.includes('@hookform')) {
+              return 'form-vendor';
+            }
+            // Keep utilities separate and smaller
+            if (id.includes('axios')) {
+              return 'http-vendor';
+            }
+            if (id.includes('clsx') || id.includes('tailwind-merge')) {
               return 'utils-vendor';
             }
             // Default vendor chunk for other node_modules
             return 'vendor';
           }
           
-          // Feature-based chunks - group related components by path
+          // Simplified feature chunks
           if (id.includes('/src/pages/PlatformDesk/')) {
             return 'platform-desk';
           }
@@ -65,26 +88,40 @@ export default defineConfig({
             return 'hrms-desk';
           }
           
-          // Store and state management
+          // Keep store together
           if (id.includes('/src/store/')) {
             return 'store';
           }
           
-          // Common components and utilities
+          // Keep common components together
           if (id.includes('/src/components/') || id.includes('/src/layout/') || 
-              id.includes('/src/auth/') || id.includes('/src/commons/')) {
+              id.includes('/src/auth/')) {
             return 'common';
           }
           
-          // Routes and dynamic imports
+          // Keep routes together
           if (id.includes('/src/routes/')) {
             return 'routes';
           }
         }
       }
     },
-    // Increase chunk size warning limit to 1000kb since we're now using code splitting
-    chunkSizeWarningLimit: 1000
+    // Reduce chunk size warning limit
+    chunkSizeWarningLimit: 500,
+    // Add minification options to prevent variable hoisting issues
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        // Disable some aggressive optimizations that can cause initialization issues
+        hoist_funs: false,
+        hoist_vars: false,
+        keep_fargs: true
+      },
+      mangle: {
+        // Keep function names to help with debugging
+        keep_fnames: true
+      }
+    }
   },
   // server: {
   //   proxy: {
